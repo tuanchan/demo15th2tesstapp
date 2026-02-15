@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -205,15 +204,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   // ── BUILD SAVE PATH ──
   Future<String> _getSavePath(DownloadItem item) async {
-    Directory? dir;
-    if (Platform.isIOS) {
-      dir = await getApplicationDocumentsDirectory();
-    } else {
-      await Permission.storage.request();
-      dir = await getExternalStorageDirectory();
-      dir ??= await getApplicationDocumentsDirectory();
-    }
-
+    final dir = await getApplicationDocumentsDirectory();
     final safe = item.title
         .replaceAll(RegExp(r'[<>:"/\\|?*]'), '_')
         .replaceAll('  ', ' ')
