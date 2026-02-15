@@ -138,6 +138,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     try {
       // Fetch video metadata
       final video = await _yt.videos.get(item.url);
+      if (!mounted) return;
       setState(() {
         item.title = video.title;
         item.author = video.author;
@@ -148,53 +149,44 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               '${d.inMinutes}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
         }
         item.status = DownloadStatus.downloading;
+        item.progress = 0;
       });
 
       // Get stream manifest
       final manifest = await _yt.videos.streamsClient.getManifest(item.url);
       final savePath = await _getSavePath(item);
 
-      if (item.format == AudioFormat.m4a) {
-        // Best audio stream (m4a)
-        final audioStream = manifest.audioOnly.withHighestBitrate();
-        final stream = _yt.videos.streamsClient.get(audioStream);
-        final file = File(savePath);
-        final sink = file.openWrite();
-        final total = audioStream.size.totalBytes;
-        int received = 0;
+      final audioStream = manifest.audioOnly.withHighestBitrate();
+      final stream = _yt.videos.streamsClient.get(audioStream);
+      final file = File(savePath);
+      final sink = file.openWrite();
+      final total = audioStream.size.totalBytes;
+      int received = 0;
+      int lastUpdate = 0;
 
-        await for (final chunk in stream) {
-          sink.add(chunk);
-          received += chunk.length;
-          setState(() {
-            item.progress = received / total;
-          });
+      await for (final chunk in stream) {
+        sink.add(chunk);
+        received += chunk.length;
+        // Update UI mỗi 100KB để progress mượt
+        if (received - lastUpdate >= 100000) {
+          lastUpdate = received;
+          if (mounted) {
+            setState(() {
+              item.progress = total > 0 ? received / total : 0;
+            });
+          }
         }
-        await sink.close();
-      } else {
-        // mp3 — download best audio then rename (real conversion needs ffmpeg)
-        final audioStream = manifest.audioOnly.withHighestBitrate();
-        final stream = _yt.videos.streamsClient.get(audioStream);
-        final file = File(savePath);
-        final sink = file.openWrite();
-        final total = audioStream.size.totalBytes;
-        int received = 0;
-
-        await for (final chunk in stream) {
-          sink.add(chunk);
-          received += chunk.length;
-          setState(() {
-            item.progress = received / total;
-          });
-        }
-        await sink.close();
       }
+      await sink.flush();
+      await sink.close();
 
+      if (!mounted) return;
       setState(() {
         item.status = DownloadStatus.done;
         item.progress = 1.0;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         item.status = DownloadStatus.error;
         item.errorMessage = e.toString();
