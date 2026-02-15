@@ -1,3 +1,4 @@
+// main.dart
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
+  ));
   runApp(const MusicDownloaderApp());
 }
 
@@ -18,12 +25,16 @@ class MusicDownloaderApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return MaterialApp(
       title: 'SoundDrop',
       debugShowCheckedModeBanner: false,
-      theme: const CupertinoThemeData(
+      theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Color(0xFFFF3B5C),
+        scaffoldBackgroundColor: const Color(0xFF0A0A0F),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFFFF3B5C),
+          surface: Color(0xFF0A0A0F),
+        ),
       ),
       home: const HomeScreen(),
     );
@@ -228,9 +239,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
+    return Scaffold(
       backgroundColor: const Color(0xFF0A0A0F),
-      child: SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
             _buildHeader(),
@@ -457,9 +468,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          color: selected
-              ? const Color(0xFFFF3B5C)
-              : const Color(0xFF1A1A24),
+          color: selected ? const Color(0xFFFF3B5C) : const Color(0xFF1A1A24),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: selected
