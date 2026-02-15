@@ -10,23 +10,9 @@
         "cupertino_icons",
         "flutter",
         "path_provider",
-        "permission_handler",
         "youtube_explode_dart"
       ],
       "devDependencies": []
-    },
-    {
-      "name": "permission_handler",
-      "version": "11.4.0",
-      "dependencies": [
-        "flutter",
-        "meta",
-        "permission_handler_android",
-        "permission_handler_apple",
-        "permission_handler_html",
-        "permission_handler_platform_interface",
-        "permission_handler_windows"
-      ]
     },
     {
       "name": "path_provider",
@@ -72,54 +58,6 @@
         "sky_engine",
         "vector_math"
       ]
-    },
-    {
-      "name": "permission_handler_platform_interface",
-      "version": "4.3.0",
-      "dependencies": [
-        "flutter",
-        "meta",
-        "plugin_platform_interface"
-      ]
-    },
-    {
-      "name": "permission_handler_windows",
-      "version": "0.2.1",
-      "dependencies": [
-        "flutter",
-        "permission_handler_platform_interface"
-      ]
-    },
-    {
-      "name": "permission_handler_html",
-      "version": "0.1.3+5",
-      "dependencies": [
-        "flutter",
-        "flutter_web_plugins",
-        "permission_handler_platform_interface",
-        "web"
-      ]
-    },
-    {
-      "name": "permission_handler_apple",
-      "version": "9.4.7",
-      "dependencies": [
-        "flutter",
-        "permission_handler_platform_interface"
-      ]
-    },
-    {
-      "name": "permission_handler_android",
-      "version": "12.1.0",
-      "dependencies": [
-        "flutter",
-        "permission_handler_platform_interface"
-      ]
-    },
-    {
-      "name": "meta",
-      "version": "1.17.0",
-      "dependencies": []
     },
     {
       "name": "path_provider_windows",
@@ -190,6 +128,11 @@
         "meta",
         "petitparser"
       ]
+    },
+    {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
     },
     {
       "name": "json_annotation",
@@ -263,25 +206,6 @@
       "dependencies": []
     },
     {
-      "name": "plugin_platform_interface",
-      "version": "2.1.8",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
-      "name": "web",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
-      "name": "flutter_web_plugins",
-      "version": "0.0.0",
-      "dependencies": [
-        "flutter"
-      ]
-    },
-    {
       "name": "path",
       "version": "1.9.1",
       "dependencies": []
@@ -290,6 +214,13 @@
       "name": "ffi",
       "version": "2.2.0",
       "dependencies": []
+    },
+    {
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
+      "dependencies": [
+        "meta"
+      ]
     },
     {
       "name": "platform",
@@ -361,6 +292,11 @@
         "path",
         "term_glyph"
       ]
+    },
+    {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
     },
     {
       "name": "async",

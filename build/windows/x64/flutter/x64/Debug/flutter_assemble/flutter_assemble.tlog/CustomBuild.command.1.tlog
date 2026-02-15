@@ -1,0 +1,28 @@
+^C:\USERS\ADMIN\DOWNLOADS\MUSIC_DOWNLOADER\MUSIC_DOWNLOADER\BUILD\WINDOWS\X64\CMAKEFILES\D07C805CA5ED965C55FA8B6D2A671B53\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\src\flutter PROJECT_DIR=C:\Users\ADMIN\Downloads\music_downloader\music_downloader FLUTTER_ROOT=C:\src\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\ADMIN\Downloads\music_downloader\music_downloader\windows\flutter\ephemeral PROJECT_DIR=C:\Users\ADMIN\Downloads\music_downloader\music_downloader FLUTTER_TARGET=C:\Users\ADMIN\Downloads\music_downloader\music_downloader\lib\main.dart DART_DEFINES=RkxVVFRFUl9WRVJTSU9OPTMuMzguOQ==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049NjczMjNkZTI4NQ==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049NTg3YzE4Zjg3Mw==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMC44 DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\ADMIN\Downloads\music_downloader\music_downloader\.dart_tool\package_config.json C:/src/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ADMIN\DOWNLOADS\MUSIC_DOWNLOADER\MUSIC_DOWNLOADER\BUILD\WINDOWS\X64\CMAKEFILES\05B8BBED17CA007FC3F82891D6C4019D\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ADMIN\DOWNLOADS\MUSIC_DOWNLOADER\MUSIC_DOWNLOADER\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/ADMIN/Downloads/music_downloader/music_downloader/windows -BC:/Users/ADMIN/Downloads/music_downloader/music_downloader/build/windows/x64 --check-stamp-file C:/Users/ADMIN/Downloads/music_downloader/music_downloader/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

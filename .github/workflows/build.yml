@@ -2,7 +2,7 @@ name: iOS Unsigned IPA
 
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "main"]
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - name: Flutter Build iOS (no codesign)
         run: flutter build ios --release --no-codesign
 
-      - name: Build Runner.app (xcodebuild no signing)
+      - name: Build Runner.xcarchive (no signing)
         run: |
           cd ios
           xcodebuild \
@@ -37,12 +37,22 @@ jobs:
             CODE_SIGNING_IDENTITY="" \
             DEVELOPMENT_TEAM="" \
             PROVISIONING_PROFILE_SPECIFIER="" \
+            PRODUCT_BUNDLE_IDENTIFIER=com.example.musicDownloader \
             -quiet
 
       - name: Package unsigned IPA
         run: |
+          APP_PATH="ios/build/Runner.xcarchive/Products/Applications/Runner.app"
           mkdir -p build/Payload
-          cp -R ios/build/Runner.xcarchive/Products/Applications/Runner.app build/Payload/Runner.app
+          cp -R "$APP_PATH" build/Payload/Runner.app
+
+          # Strip all signatures so ESign can re-sign cleanly
+          codesign --remove-signature build/Payload/Runner.app 2>/dev/null || true
+          find build/Payload/Runner.app -name "*.dylib" \
+            -exec codesign --remove-signature {} \; 2>/dev/null || true
+          find build/Payload/Runner.app/Frameworks -name "*.framework" \
+            -exec codesign --remove-signature {} \; 2>/dev/null || true
+
           cd build
           zip -r SoundDrop-unsigned.ipa Payload >/dev/null
 

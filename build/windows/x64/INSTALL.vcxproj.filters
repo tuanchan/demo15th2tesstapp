@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\ADMIN\Downloads\music_downloader\music_downloader\build\windows\x64\CMakeFiles\c7df699c0c71989d052e4c1905c3a881\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DE27141B-D71E-3485-9CC3-CE876D5B9794}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
