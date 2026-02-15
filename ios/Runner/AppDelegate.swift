@@ -1,13 +1,19 @@
-import Flutter
 import UIKit
+import Flutter
 
-@main
+@UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
+
+    // Fix black screen when sideloaded via ESign/AltStore
+    if let window = self.window {
+      window.backgroundColor = UIColor.black
+    }
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
